@@ -225,7 +225,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
   cursor: pointer;
 }
 
-</style>
+  </style>
 
 <!-- JavaScript -->
 <script>
@@ -313,7 +313,10 @@ document.querySelector('.search-btn').addEventListener('click', function() {
                     <?php
                     $imagePath = "php/uploads/" . htmlspecialchars($row['gambar']);
                     if (!empty($row['gambar']) && file_exists($imagePath)) {
-                        echo '<img src="'.$imagePath.'" alt="'.htmlspecialchars($row['nama']).'" class="gallery-image">';
+                        // Tambahkan <a> dengan class fancybox
+                        echo '<a href="'.$imagePath.'" class="fancybox" data-fancybox="gallery" data-caption="'.htmlspecialchars($row['nama']).'">
+                                <img src="'.$imagePath.'" alt="'.htmlspecialchars($row['nama']).'" class="gallery-image">
+                              </a>';
                     } else {
                         echo '<div class="image-placeholder">
                             <i class="fas fa-image fa-3x"></i>
@@ -356,14 +359,20 @@ document.querySelector('.search-btn').addEventListener('click', function() {
 <!-- END CORE PLUGINS -->
 
 <!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
- 
 <script src="assets/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script><!-- pop up -->
-
 <script src="assets/corporate/scripts/layout.js" type="text/javascript"></script>
 <script type="text/javascript">
     jQuery(document).ready(function() {
         Layout.init();    
         Layout.initTwitter();
+        // Aktifkan fancybox untuk gambar event
+        $(".fancybox").fancybox({
+            openEffect: 'elastic',
+            closeEffect: 'elastic',
+            helpers: {
+                title: { type: 'inside' }
+            }
+        });
     });
 </script>
 <!-- END PAGE LEVEL JAVASCRIPTS -->
