@@ -1,4 +1,4 @@
-<?php
+x<?php
 include "koneksi.php";
 $result = mysqli_query($conn, "SELECT a.*, u.username as admin_name 
                               FROM ayat_harian a 

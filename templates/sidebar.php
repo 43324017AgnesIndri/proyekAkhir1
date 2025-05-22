@@ -31,7 +31,7 @@ if (!isset($current_page)) {
         </li>
         <li>
             <a href="galeri.php" class="<?= ($current_page == 'galeri.php') ? 'active' : '' ?>">
-                <i class="fas fa-file"></i> Galeri
+                <i class="fas fa-images"></i> Galeri
             </a>
         </li>
         <li>
@@ -80,12 +80,12 @@ if (!isset($current_page)) {
         </li>
         <li>
             <a href="event_galeri.php" class="<?= ($current_page == 'event_galeri.php') ? 'active' : '' ?>">
-                <i class="fas fa-folder"></i> Event Galeri
+                <i class="fas fa-images"></i> Event Galeri
             </a>
         </li>
         <li>
             <a href="remaja_naposo.php" class="<?= ($current_page == 'remaja_naposo.php') ? 'active' : '' ?>">
-                <i class="fas fa-folder"></i> Remaja Naposo
+                <i class="fas fa-users"></i> Remaja Naposo
             </a>
         </li>
         <li>

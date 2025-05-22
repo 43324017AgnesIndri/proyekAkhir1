@@ -37,8 +37,6 @@ $current_page = basename($_SERVER['PHP_SELF']);
         href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Merriweather:wght@400;700&display=swap"
         rel="stylesheet">
 </head>
-
-<>
     <div class="wrapper">
         <!-- Sidebar -->
         <?php include "../templates/sidebar.php"; ?>

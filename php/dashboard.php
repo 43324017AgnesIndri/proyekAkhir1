@@ -41,15 +41,40 @@ $total_pelayanan_query = "SELECT COUNT(*) AS total FROM program_pelayanan";
 $total_pelayanan_result = mysqli_query($conn, $total_pelayanan_query);
 $total_pelayanan_data = mysqli_fetch_assoc($total_pelayanan_result);
 $total_pelayanan = $total_pelayanan_data['total'];
+
+// Ambil pengumuman terbaru dari program_pelayanan
+$pengumuman_query = "SELECT * FROM program_pelayanan ORDER BY no DESC LIMIT 1";
+$pengumuman_result = mysqli_query($conn, $pengumuman_query);
+$pengumuman = mysqli_fetch_assoc($pengumuman_result);
+
+// Ambil ayat harian terbaru
+$ayat_query = "SELECT * FROM ayat_harian ORDER BY tanggal_dibuat DESC LIMIT 1";
+$ayat_result = mysqli_query($conn, $ayat_query);
+$ayat = mysqli_fetch_assoc($ayat_result);
+
+// Ambil jadwal ibadah mendatang (yang tanggalnya >= hari ini)
+$jadwal_query = "SELECT * FROM jadwal_ibadah ORDER BY id DESC LIMIT 1";
+$jadwal_result = mysqli_query($conn, $jadwal_query);
+$jadwal_ibadah = [];
+while ($row = mysqli_fetch_assoc($jadwal_result)) {
+    $jadwal_ibadah[] = $row;
+}
 ?>
 
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Gereja - Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Merriweather:wght@400;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -63,21 +88,21 @@ $total_pelayanan = $total_pelayanan_data['total'];
             --danger-color: #e74a3b;
             --success-color: #1cc88a;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
             background-color: var(--secondary-color);
             color: var(--text-color);
             display: flex;
             min-height: 100vh;
         }
-        
+
         .sidebar {
             width: 250px;
             background: linear-gradient(180deg, var(--primary-color) 0%, var(--primary-dark) 100%);
@@ -87,7 +112,7 @@ $total_pelayanan = $total_pelayanan_data['total'];
             height: 100vh;
             overflow-y: auto;
         }
-        
+
         .sidebar-header {
             display: flex;
             align-items: center;
@@ -95,17 +120,17 @@ $total_pelayanan = $total_pelayanan_data['total'];
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             margin-bottom: 20px;
         }
-        
+
         .sidebar-header h2 {
             font-size: 22px;
             margin-left: 10px;
             font-weight: 600;
         }
-        
+
         .nav-item {
             width: 100%;
         }
-        
+
         .nav-link {
             display: flex;
             align-items: center;
@@ -116,29 +141,29 @@ $total_pelayanan = $total_pelayanan_data['total'];
             margin: 2px 0;
             border-radius: 5px;
         }
-        
+
         .nav-link:hover {
             background-color: rgba(255, 255, 255, 0.1);
         }
-        
+
         .nav-link.active {
             background-color: rgba(255, 255, 255, 0.2);
             font-weight: 600;
         }
-        
+
         .nav-icon {
             width: 20px;
             text-align: center;
             margin-right: 15px;
             font-size: 18px;
         }
-        
+
         .main-content {
             flex: 1;
             margin-left: 250px;
             padding: 20px;
         }
-        
+
         .header {
             display: flex;
             justify-content: space-between;
@@ -149,31 +174,31 @@ $total_pelayanan = $total_pelayanan_data['total'];
             border-radius: 5px;
             margin-bottom: 25px;
         }
-        
+
         .header h1 {
             font-size: 24px;
             color: var(--primary-dark);
         }
-        
+
         .user-welcome {
             font-size: 16px;
             color: var(--text-color);
         }
-        
+
         .dashboard-cards {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
             gap: 25px;
             margin-bottom: 25px;
         }
-        
+
         .card {
             background-color: #fff;
             border-radius: 5px;
             box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
             padding: 25px;
         }
-        
+
         .card-header {
             font-size: 18px;
             font-weight: 600;
@@ -182,11 +207,11 @@ $total_pelayanan = $total_pelayanan_data['total'];
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 10px;
         }
-        
+
         .card-content {
             min-height: 150px;
         }
-        
+
         .stat-card {
             display: flex;
             align-items: center;
@@ -196,7 +221,7 @@ $total_pelayanan = $total_pelayanan_data['total'];
             background-color: #fff;
             margin-bottom: 20px;
         }
-        
+
         .stat-icon {
             font-size: 30px;
             margin-right: 20px;
@@ -204,164 +229,60 @@ $total_pelayanan = $total_pelayanan_data['total'];
             border-radius: 50%;
             color: white;
         }
-        
+
         .stat-icon.blue {
             background-color: var(--accent-color);
         }
-        
+
         .stat-icon.red {
             background-color: var(--danger-color);
         }
-        
+
         .stat-icon.green {
             background-color: var(--success-color);
         }
-        
+
         .stat-info h3 {
             font-size: 22px;
             margin-bottom: 5px;
         }
-        
+
         .stat-info p {
             color: #6c757d;
             font-size: 14px;
         }
-        
+
         @media (max-width: 768px) {
             .sidebar {
                 width: 70px;
             }
-            
-            .sidebar-header h2, .nav-item span {
+
+            .sidebar-header h2,
+            .nav-item span {
                 display: none;
             }
-            
+
             .nav-icon {
                 margin-right: 0;
             }
-            
+
             .main-content {
                 margin-left: 70px;
             }
         }
     </style>
 </head>
+
 <body>
     <!-- Sidebar -->
-    <div class="sidebar">
-        <div class="sidebar-header">
-            <i class="fas fa-church fa-2x"></i>
-            <h2>Admin Gereja</h2>
-        </div>
-        
-        <nav>
-            <div class="nav-item">
-                <a href="dashboard.php" class="nav-link active">
-                    <i class="fas fa-tachometer-alt nav-icon"></i>
-                    <span>Dashboard</span>
-                </a>
-            </div>
-
-            <div class="nav-item">
-                <a href="ayat_harian_admin.php" class="nav-link">
-                    <i class="fas fa-bible nav-icon"></i>
-                    <span>Ayat Harian</span>
-                </a>
-            </div>
-            
-            <div class="nav-item">
-                <a href="jadwal_ibadah.php" class="nav-link">
-                    <i class="fas fa-calendar-alt nav-icon"></i>
-                    <span>Jadwal Ibadah</span>
-                </a>
-            </div>
-            
-            <div class="nav-item">
-                <a href="program_pelayanan.php" class="nav-link">
-                    <i class="fas fa-solid fa-folder nav-icon"></i>
-                    <span>Program Pelayanan</span>
-                </a>
-            </div>
-
-            <div class="nav-item">
-                <a href="galeri.php" class="nav-link">
-                    <i class="fas  fa-light fa-file nav-icon"></i>
-                    <span>Galeri</span>
-                </a>
-            </div>
-            
-            <div class="nav-item">
-                <a href="jemaat.php" class="nav-link">
-                    <i class="fas fa-users nav-icon"></i>
-                    <span>Jemaat</span>
-                </a>
-            </div>
-
-            <div class="nav-item">
-                <a href="warta_jemaat.php" class="nav-link">
-                    <i class="fas fa-solid fa-address-book nav-icon"></i>
-                    <span>Warta Jemaat</span>
-                </a>
-            </div>
-
-            <div class="nav-item">
-                <a href="struktur_gereja.php" class="nav-link">
-                    <i class="fas fa-solid fa-landmark nav-icon"></i>
-                    <span>Struktur Gereja</span>
-                </a>
-            </div>
-
-            <div class="nav-item">
-                <a href="kategori_struktur_gereja.php" class="nav-link">
-                    <i class="fas fa-bible nav-icon"></i>
-                    <span>kategori </span>
-                </a>
-            </div>
-
-            <div class="nav-item">
-                <a href="koor.php" class="nav-link">
-                    <i class="fas fa-solid fa-folder nav-icon"></i>
-                    <span>Koor</span>
-                </a>
-            </div>
-
-            <div class="nav-item">
-                <a href="acara_koor.php" class="nav-link">
-                    <i class="fas fa-solid fa-folder nav-icon"></i>
-                    <span>Acara Koor</span>
-                </a>
-            </div>
-
-            <div class="nav-item">
-                <a href="event_galeri.php" class="nav-link">
-                    <i class="fas fa-solid fa-folder nav-icon"></i>
-                    <span>Event Galeri</span>
-                </a>
-            </div>
-
-            <div class="nav-item">
-                <a href="remaja_naposo.php" class="nav-link">
-                    <i class="fas fa-solid fa-folder nav-icon"></i>
-                    <span>Remaja Naposo</span>
-                </a>
-            </div>
-            
-            <div class="nav-item">
-                <a href="logout.php" class="nav-link">
-                    <i class="fas fa-sign-out-alt nav-icon"></i>
-                    <span>Keluar</span>
-                </a>
-            </div>
-        </nav>
-    </div>
-    
+    <?php include "../templates/sidebar.php"; ?>
     <!-- Main Content -->
     <div class="main-content">
         <div class="header">
             <h1>Dashboard</h1>
             <div class="user-welcome">Selamat datang, Admin</div>
         </div>
-        
+
         <div class="row">
             <div class="stat-card">
                 <div class="stat-icon blue">
@@ -372,17 +293,17 @@ $total_pelayanan = $total_pelayanan_data['total'];
                     <p>Total Jemaat</p>
                 </div>
             </div>
-            
+
             <div class="stat-card">
                 <div class="stat-icon green">
                     <i class="fas fa-calendar-check"></i>
                 </div>
                 <div class="stat-info">
-                    <h3><?= $total_pelayanan?></h3>
+                    <h3><?= $total_pelayanan ?></h3>
                     <p>Kegiatan Minggu ini</p>
                 </div>
             </div>
-                
+
             <div class="stat-card">
                 <div class="stat-icon red">
                     <i class="fas fa-bible"></i>
@@ -393,7 +314,7 @@ $total_pelayanan = $total_pelayanan_data['total'];
                 </div>
             </div>
         </div>
-        
+
         <div class="dashboard-cards">
             <div class="card">
                 <div class="card-header">
@@ -401,32 +322,55 @@ $total_pelayanan = $total_pelayanan_data['total'];
                     Pengumuman Terbaru
                 </div>
                 <div class="card-content">
-                    <p>Kebaktian Paskah akan diadakan pada tanggal 12 April 2025 pukul 09:00 WIB.</p>
+                    <?php if ($pengumuman): ?>
+                        <p><strong><?= htmlspecialchars($pengumuman['uraian']); ?></strong></p>
+                        <p>Bentuk: <?= htmlspecialchars($pengumuman['bentuk']); ?></p>
+                        <p>Waktu: <?= htmlspecialchars($pengumuman['waktu_pelaksanaan']); ?></p>
+                    <?php else: ?>
+                        <p>Tidak ada pengumuman terbaru.</p>
+                    <?php endif; ?>
                 </div>
             </div>
-            
+
             <div class="card">
                 <div class="card-header">
                     <i class="fas fa-bible"></i>
                     Ayat Harian
                 </div>
                 <div class="card-content">
-                    <p><strong>Amsal 19:21</strong></p>
-                    <p>Semua Jalan Kehidupan Adalah Yang Terbaik Dari Tuhan</p>
+                    <?php if ($ayat): ?>
+                        <p><strong><?= htmlspecialchars($ayat['referensi']); ?></strong></p>
+                        <p><?= htmlspecialchars($ayat['ayat']); ?></p>
+                        <p style="font-size:12px;color:#888;">
+                            <?= date('l, d F Y', strtotime($ayat['tanggal_dibuat'])); ?>
+                        </p>
+                    <?php else: ?>
+                        <p>Tidak ada ayat harian terbaru.</p>
+                    <?php endif; ?>
                 </div>
             </div>
-            
+
             <div class="card">
                 <div class="card-header">
                     <i class="fas fa-calendar-alt"></i>
                     Jadwal Ibadah Mendatang
                 </div>
                 <div class="card-content">
-                    <p><strong>Rabu, 09 April 2025</strong> - Doa Malam (19:00)</p>
-                    <p><strong>Minggu, 13 April 2025</strong> - Ibadah Minggu (09:00)</p>
+                    <?php if (!empty($jadwal_ibadah)): ?>
+                        <?php foreach ($jadwal_ibadah as $jadwal): ?>
+                            <p>
+                                <strong><?= htmlspecialchars($jadwal['hari']); ?></strong> - 
+                                <?= htmlspecialchars($jadwal['ibadah']); ?> 
+                                (<?= htmlspecialchars($jadwal['keterangan']); ?>)
+                            </p>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <p>Tidak ada jadwal ibadah mendatang.</p>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
     </div>
 </body>
+
 </html>
