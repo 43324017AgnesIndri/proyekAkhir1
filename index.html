@@ -1,0 +1,636 @@
+<?php include 'php/koneksi.php'; ?>
+<!DOCTYPE html>
+<!--
+Template: Metronic Frontend Freebie - Responsive HTML Template Based On Twitter Bootstrap 3.3.4
+Version: 1.0.0
+Author: KeenThemes
+Website: http://www.keenthemes.com/
+Contact: support@keenthemes.com
+Follow: www.twitter.com/keenthemes
+Like: www.facebook.com/keenthemes
+Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
+-->
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+
+
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<!-- Head BEGIN -->
+<head>
+  <meta charset="utf-8">
+  <title>HKBP TIberias </title>
+
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <meta content="Metronic Shop UI description" name="description">
+  <meta content="Metronic Shop UI keywords" name="keywords">
+  <meta content="keenthemes" name="author">
+
+  <meta property="og:site_name" content="-CUSTOMER VALUE-">
+  <meta property="og:title" content="-CUSTOMER VALUE-">
+  <meta property="og:description" content="-CUSTOMER VALUE-">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="-CUSTOMER VALUE-"><!-- link to image for socio -->
+  <meta property="og:url" content="-CUSTOMER VALUE-">
+
+  <link rel="shortcut icon" href="favicon.ico">
+
+  <!-- Fonts START -->
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|PT+Sans+Narrow|Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all" rel="stylesheet" type="text/css">
+  <!-- Fonts END -->
+
+  <!-- Global styles START -->          
+  <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Global styles END --> 
+   
+  <!-- Page level plugin styles START -->
+  <link href="assets/pages/css/animate.css" rel="stylesheet">
+  <link href="assets/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet">
+  <link href="assets/plugins/owl.carousel/assets/owl.carousel.css" rel="stylesheet">
+  <!-- Page level plugin styles END -->
+
+  <!-- Theme styles START -->
+  <link href="assets/pages/css/components.css" rel="stylesheet">
+  <link href="assets/pages/css/slider.css" rel="stylesheet">
+  <link href="assets/corporate/css/style.css" rel="stylesheet">
+  <link href="assets/corporate/css/style-responsive.css" rel="stylesheet">
+  <link href="assets/corporate/css/themes/red.css" rel="stylesheet" id="style-color">
+  <link href="assets/corporate/css/custom.css" rel="stylesheet">
+  <!-- Theme styles END -->
+  <style>
+     .container1 {
+            display: flex;
+             justify-content: space-between;
+            gap: 50px;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 900px;
+            margin-bottom: 10px;
+            margin-top: 20px;
+            padding-bottom: 10px;
+            padding-top: 20px;
+            align-items: center;
+            position: relative;
+            left: 200px;
+     }
+        .box {
+            width: 200px;
+            height: 150px;
+            background-color: white;
+            border: 2px solid black;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 10px;
+            text-align: center;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            padding-top: 20px;
+            margin-top: 20px;
+            left: 20px;
+        }
+        .box.active {
+            width: 300px;
+            height: 200px;
+            background-color: lightblue;
+        }
+        .box-left {
+            left: 50px;
+            bottom: 50px;
+            width: 800px;
+            height: 300px;
+        }
+        .box-right {
+            right: 0;
+            bottom: 0px;
+        }
+        .box:hover {
+            
+            color: blue;
+            transform: scale(1.05);
+        }
+        .title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #004080;
+            text-align: center;
+            margin-top: 120px;
+        }
+        .box img {
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            object-fit: cover;
+        }
+        
+        .text {
+            position: relative;
+            z-index: 1;
+        }
+    .menu-search {
+      position: relative;
+  }
+  .search-box {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 30px;
+      background: white;
+      padding: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+  }
+  .search-box.active {
+      display: block;
+  }
+  .search-btn {
+      cursor: pointer;
+  }
+  </style>
+  
+  <!-- JavaScript -->
+  <script>
+  document.querySelector('.search-btn').addEventListener('click', function() {
+      document.querySelector('.search-box').classList.toggle('active');
+  });
+  </script>
+  <link rel="stylesheet" href="php/style10.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Merriweather:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+<!-- Head END -->
+
+<!-- Body BEGIN -->
+<body class="corporate">
+
+    <!-- BEGIN STYLE CUSTOMIZER -->
+    
+    <!-- END BEGIN STYLE CUSTOMIZER --> 
+
+    <!-- BEGIN TOP BAR -->
+    <div class="pre-header">
+        <div class="container">
+            <div class="row">
+                <!-- BEGIN TOP BAR LEFT PART -->
+                <div class="col-md-6 col-sm-6 additional-shop-info">
+                    <ul class="list-unstyled list-inline">
+                        <li><i class="fa fa-phone"></i><span>+6282162118932</span></li>
+                        <li><i class="fa fa-envelope-o"></i><span>info@keenthemes.com</span></li>
+                    </ul>
+                </div>
+                <!-- END TOP BAR LEFT PART -->
+                <!-- BEGIN TOP BAR MENU -->
+                <div class="col-md-6 col-sm-6 additional-nav">
+                    <ul class="list-unstyled list-inline pull-right">
+                        <li><a href="login.html">Log In</a></li>
+                        <li><a href="page-reg-page.html">Registration</a></li>
+                    </ul>
+                </div>
+                <!-- END TOP BAR MENU -->
+            </div>
+        </div>        
+    </div>
+    <!-- END TOP BAR -->
+    <!-- BEGIN HEADER -->
+    <div class="header">
+      <div class="container">
+        <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
+        <!-- BEGIN NAVIGATION -->
+<div class="header-navigation-container">
+  <div class="header-navigation">
+    <ul class="nav-menu">
+      <!-- Logo ditempatkan sebelum menu "Home" -->
+      <li class="site-logo">
+        <a href="index.html">
+          <img src="assets/corporate/img/logos/LOGO HKBP.png" width="80" alt="Logo" class="logo-img">
+        </a>
+      </li>
+       
+        <!-- BEGIN NAVIGATION -->
+        <div class="header-navigation pull-right font-transform-inherit">
+          <ul>
+            <li class="dropdown">
+              <a href="index.html">Home</a>
+            </li>
+                
+              
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;"> Beranda </a>
+              <ul class="dropdown-menu">
+                <li><a href="Visi&misi.html">Visi & Misi</a></li>
+                <li><a href="sejarah gereja.html">Sejarah gereja</a></li>
+                <li><a href="program pelayanan.html">Program Pelayanan</a></li>
+                <li><a href="Galeri.html">Galeri</a></li>
+              </ul>
+            </li>
+
+            <li class="dropdown"><a href="jemaat.html">Jemaat</a></li>
+
+            <li class="dropdown"><a href="Warta Jemaat.html">Warta Jemaat</a></li>
+            <li class="dropdown"><a href="Struktur Gereja.html">Struktur Gereja</a></li>
+              
+      
+            <li class="dropdown dropdown-megamenu">
+              <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;"> Kegiatan Gereja </a>
+              <ul class="dropdown-menu">
+                <li><a href="Koor.html">Koor</a></li>
+                <li><a href="Event.html">Event</a></li>
+                <li><a href="Remaja Naposo.html">Remaja Naposo</a></li>
+              </ul>
+            </li>
+            <li class="dropdown"><a href="Peta.html">Peta/Maps</a></li>
+      
+            <!-- BEGIN TOP SEARCH -->
+            <li class="menu-search">
+              <span class="sep"></span>
+              <i class="fa fa-search search-btn"></i>
+              <div class="search-box">
+                <form onsubmit="return searchContent();">
+                  <div class="input-group">
+                      <input type="text" id="searchInput" placeholder="Search..." class="form-control" required>
+                      <span class="input-group-btn">
+                          <button class="btn btn-primary" type="submit">Search</button>
+                      </span>
+                  </div>
+              </form>
+              
+              <!-- Area untuk menampilkan hasil pencarian -->
+              <div id="searchResults"></div>
+                       
+              </div>
+          </li>
+            <!-- END TOP SEARCH -->
+          </ul>
+        </div>
+      </div>
+      <!-- END NAVIGATION -->
+      </div>
+    </div>
+    <!-- Header END -->
+
+    <!-- BEGIN SLIDER -->
+    <div class="page-slider margin-bottom-40">
+        <div id="carousel-example-generic" class="carousel slide carousel-slider">
+            <!-- Indicators -->
+            <ol class="carousel-indicators carousel-indicators-frontend">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <!-- First slide -->
+                <div class="item carousel-item-eight active">
+                    <div class="container">
+                        <div class="carousel-position-six text-uppercase text-center">
+                            <h2 class="margin-bottom-20 animate-delay carousel-title-v5" data-animation="animated fadeInDown">
+                                HKBP TIBERIAS <br/>
+                                <span class="carousel-title-normal">LUMBAN BUL-BUL</span>
+                            </h2>
+                            <p class="carousel-subtitle-v5 border-top-bottom margin-bottom-30" data-animation="animated fadeInDown">"SEGALA KEMULIAAN HANYA BAGI ALLAH" </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Second slide -->
+                <div class="item carousel-item-nine">
+                    <div class="container">
+                        <div class="carousel-position-six text-center">
+                             <h2 class="margin-bottom-20 animate-delay carousel-title-v5" data-animation="animated fadeInDown">
+                                HKBP TIBERIAS <br/>
+                                <span class="carousel-title-normal">LUMBAN BUL-BUL</span>
+                            </h2>
+                            <p class="carousel-subtitle-v5 border-top-bottom margin-bottom-30" data-animation="animated fadeInDown">"SEGALA KEMULIAAN HANYA BAGI ALLAH" </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Third slide -->
+                <div class="item carousel-item-ten">
+                    <div class="container">
+                        <div class="carousel-position-six text-center">
+                          <h2 class="margin-bottom-20 animate-delay carousel-title-v5" data-animation="animated fadeInDown">
+                            HKBP TIBERIAS <br/>
+                            <span class="carousel-title-normal">LUMBAN BUL-BUL</span>
+                        </h2>
+                        <p class="carousel-subtitle-v5 border-top-bottom margin-bottom-30" data-animation="animated fadeInDown">"SEGALA KEMULIAAN HANYA BAGI ALLAH" </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <a class="left carousel-control carousel-control-shop carousel-control-frontend" href="#carousel-example-generic" role="button" data-slide="prev">
+                <i class="fa fa-angle-left" aria-hidden="true"></i>
+            </a>
+            <a class="right carousel-control carousel-control-shop carousel-control-frontend" href="#carousel-example-generic" role="button" data-slide="next">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+            </a>
+        </div>
+       
+    </div>
+    </div>
+    
+    <!-- END SLIDER -->
+     
+    
+    <div class="main">
+      <div class="container1">
+        <center>
+      <div class="box box-left" onclick="toggleBox(this)">
+          <img src="assets/pages/img/frontend-slider/Gambar 1.jpg" alt="Ayat Harian">
+          <p class="text">Ayat Harian: "Tuhan adalah gembalaku, takkan kekurangan aku." - Mazmur 23:1</p>
+      </div>
+      </center>
+  </div>
+  </div>
+  
+      <div class="container">
+        <h1 class="text-judul"><b>Syalom
+        Selamat Datang di website HKBP Tiberias Lumban Bul-Bul</b></h1>
+ 
+        <!-- Kata Pengantar-->
+        <div class="row recent-work margin-bottom-40" style="font-size: 16px;">
+          <div class="col-md-6" style="text-align: justify;" >
+           
+            <p>HKBP Tiberias Lumban Bulbul adalah salah satu gereja Protestan yang menjadi bagian dari Huria Kristen Batak Protestan (HKBP). Terletak di Lumban Bulbul, Balige. Gereja ini berperan sebagai tempat ibadah serta pusat persekutuan bagi jemaat dalam bertumbuh di dalam iman kepada Kristus.</p>
+            <p>Sebagai gereja yang aktif, HKBP Tiberias Lumban Bulbul menyelenggarakan berbagai kegiatan rohani seperti ibadah mingguan, pelayanan kasih, persekutuan doa, sekolah minggu, serta kegiatan untuk remaja dan pemuda. Kami percaya bahwa gereja bukan hanya tempat untuk beribadah, tetapi juga rumah bagi setiap umat untuk bertumbuh dalam kasih dan pengenalan akan Tuhan.</p>
+            <p>Melalui website ini, Anda dapat menemukan informasi tentang jadwal ibadah, renungan harian, berita gereja, serta berbagai kegiatan yang dapat memperkuat iman dan kebersamaan kita sebagai umat Tuhan.</p>
+            <p><em>"Hendaklah kamu berakar di dalam Dia dan dibangun di atas Dia, hendaklah kamu bertambah teguh dalam iman yang telah diajarkan kepadamu, dan hendaklah hatimu melimpah dengan syukur." (Kolose 2:7)</em></p>
+            <p>Kami mengundang Anda untuk bergabung dalam persekutuan kami, bertumbuh bersama dalam kasih Tuhan, dan menjadi berkat bagi sesama.</p>
+            <p><strong>✨ Tuhan Yesus memberkati! ✨</strong></p>
+          </div>
+          <div class="col-md-6">
+            <div>
+              <img alt="Gambar HKBP Tiberias Lumban Bulbul" src="assets/pages/img/frontend-slider/Gambar 7.jpg" class="img-fluid">
+            </div>
+          </div>
+        </div>
+        
+        
+        
+        <!-- BEGIN SERVICE BOX -->
+        <!-- END SERVICE BOX -->
+        <!-- BEGIN BLOCKQUOTE BLOCK -->   
+        <!-- END BLOCKQUOTE BLOCK -->
+        <!-- Kata Pengantar -->
+         <!-- Jadwal Ibadah -->
+      
+       
+        <div class="container mt-4">
+          <h2 class="text-primary"><center><b>Jadwal Ibadah HKBP Tiberias</b></center></h2>
+          <div class="text-center">
+          <div class="table-responsive">
+              <table class="table table-bordered table-striped">
+                  <thead class="table-warning">
+                      <tr>
+                        <th class="text-center">IBADAH</th>
+                        <th class="text-center">HARI</th>
+                        <th class="text-center">KETERANGAN</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr style="background-color: skyblue;">
+                          <td>Ibadah Sekolah Minggu </td>
+                          <td>Minggu</td>
+                          <td>Pukul 07.00-08.00 WIB</td>
+                      </tr>
+                      <tr>
+                          <td>Ibadah Pagi</td>
+                          <td>Minggu</td>
+                          <td>Pukul 08.30-09.30 WIB Bahasa Indonesia </td>
+                      </tr>
+                      <tr style="background-color: skyblue;">
+                          <td>Ibadah Siang</td>
+                          <td>Minggu</td>
+                          <td>Pukul 10.00-12.00 WIB Bahasa Batak </td>
+                      </tr>
+                      <tr>
+                          <td>Kebaktian Rumah (Partamiangan) </td>
+                          <td>Rabu</td>
+                          <td>Pukul 20.00-22.00 WIB </td>
+                      </tr>
+                      <tr style="background-color: skyblue;">
+                          <td>Ibadah Pantai (1 x dua minggu) </td>
+                          <td>Minggu</td>
+                          <td>Pukul 07.00-10.00 WIB</td>
+                      </tr>
+                      <tr>
+                          <td>Ibadah PA Remaja & Naposo</td>
+                          <td>Jumat</td>
+                          <td>Pukul 19.00-21.00 WIB </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+        </div>
+        </div>
+      
+        
+      <!-- Jadwal Ibadah -->
+
+      <!-- Sejarah Gereja-->
+      
+       
+      <!-- Sejarah Gereja-->
+      
+
+        <!-- BEGIN TABS AND TESTIMONIALS -->
+        
+          <!-- END TABS -->
+        
+          <!-- TESTIMONIALS -->
+
+              <!-- Carousel nav -->
+              <a class="left-btn" href="#myCarousel" data-slide="prev"></a>
+              <a class="right-btn" href="#myCarousel" data-slide="next"></a>
+            </div>
+          </div>
+          <!-- END TESTIMONIALS -->
+        </div>                
+        <!-- END TABS AND TESTIMONIALS -->
+
+        <!-- BEGIN STEPS -->
+        
+        <!-- END STEPS -->
+
+        <!-- BEGIN CLIENTS -->
+        
+        <!-- END CLIENTS -->
+      </div>
+    </div>
+
+    <!-- BEGIN PRE-FOOTER -->
+    <div class="pre-footer">
+      <div class="container">
+        <div class="row">
+          <!-- BEGIN BOTTOM ABOUT BLOCK -->
+          <div class="col-md-4 col-sm-6 pre-footer-col">
+            <h2>Alamat</h2>
+            <p>Jl. Ujung 22351, Jl. D.I Panjaitan, Lumban Bulbul, Kec. Balige, Toba, Sumatera Utara 22312</p>
+
+            <div class="photo-stream">
+              <h2>Album Foto</h2>
+              <ul class="list-unstyled">
+                <li><a href="javascript:;"><img alt="" src="assets/pages/img/frontend-slider/Kegiatan/Gambar 1.10.jpg"></a></li>
+                <li><a href="javascript:;"><img alt="" src="assets/pages/img/frontend-slider/Kegiatan/Gambar 1.11.jpg"></a></li>
+                <li><a href="javascript:;"><img alt="" src="assets/pages/img/frontend-slider/Kegiatan/Gambar 1.12.jpg"></a></li>
+                <li><a href="javascript:;"><img alt="" src="assets/pages/img/frontend-slider/Kegiatan/Gambar 1.13.jpg"></a></li>
+                <li><a href="javascript:;"><img alt="" src="assets/pages/img/frontend-slider/Kegiatan/Gambar 1.14.jpg"></a></li>
+                <li><a href="javascript:;"><img alt="" src="assets/pages/img/frontend-slider/Kegiatan/Gambar 1.15.jpg"></a></li>
+                <li><a href="javascript:;"><img alt="" src="assets/pages/img/frontend-slider/Kegiatan/Gambar 1.16.jpg"></a></li>
+                <li><a href="javascript:;"><img alt="" src="assets/pages/img/frontend-slider/Kegiatan/Gambar 1.6.jpg"></a></li>
+                <li><a href="javascript:;"><img alt="" src="assets/pages/img/frontend-slider/Kegiatan/Gambar 1.7.jpg"></a></li>
+                <li><a href="javascript:;"><img alt="" src="assets/pages/img/frontend-slider/Kegiatan/Gambar 1.3.jpg"></a></li>
+                <li><a href="javascript:;"><img alt="" src="assets/pages/img/frontend-slider/Kegiatan/Gambar 1.4.jpg"></a></li>
+                <li><a href="javascript:;"><img alt="" src="assets/pages/img/frontend-slider/Kegiatan/Gambar 1.5.jpg"></a></li>
+                <li><a href="javascript:;"><img alt="" src="assets/pages/img/frontend-slider/Kegiatan/Gambar 1.1.jpg"></a></li>
+                <li><a href="javascript:;"><img alt="" src="assets/pages/img/frontend-slider/Kegiatan/Gambar 1.2.jpg"></a></li>
+                <li><a href="javascript:;"><img alt="" src="assets/pages/img/frontend-slider/Kegiatan/Gambar 1.8.jpg"></a></li>
+              </ul>                    
+            </div>
+          </div>
+          <!-- END BOTTOM ABOUT BLOCK -->
+
+          <!-- BEGIN BOTTOM CONTACTS -->
+          <div class="col-md-4 col-sm-6 pre-footer-col">
+            <h2>Our Contacts</h2>
+            <address class="margin-bottom-40">
+              Pdt Hasannudin
+              (081361589112)<br>
+              St. H Siahaan
+            (082162118932)<br>
+            St. F Simangunsong
+            (082161746898)<br>
+          </div>
+          <!-- END BOTTOM CONTACTS -->
+
+          <!-- BEGIN TWITTER BLOCK --> 
+          <div class="col-md-4">
+            <div>
+              <img alt="Gambar HKBP Tiberias Lumban Bulbul" src="assets/corporate/img/logos/LOGO HKBP.png" style="width: 330px; height: 330px;">
+            </div>
+          <!-- END TWITTER BLOCK -->
+        </div>
+      </div>
+    </div>
+    <!-- END PRE-FOOTER -->
+
+    <!-- BEGIN FOOTER -->
+    <div class="footer">
+      <div class="container">
+        <div class="row">
+          <!-- BEGIN COPYRIGHT -->
+          <div class="col-md-4 col-sm-4 padding-top-10">
+            2015 © Keenthemes. ALL Rights Reserved. <a href="javascript:;">Privacy Policy</a> | <a href="javascript:;">Terms of Service</a>
+          </div>
+          <!-- END COPYRIGHT -->
+          <!-- BEGIN PAYMENTS -->
+          <div class="col-md-4 col-sm-4">
+            <ul class="social-footer list-unstyled list-inline pull-right">
+              <li><a href="javascript:;"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="javascript:;"><i class="fa fa-google-plus"></i></a></li>
+              <li><a href="javascript:;"><i class="fa fa-dribbble"></i></a></li>
+              <li><a href="javascript:;"><i class="fa fa-linkedin"></i></a></li>
+              <li><a href="javascript:;"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="javascript:;"><i class="fa fa-skype"></i></a></li>
+              <li><a href="javascript:;"><i class="fa fa-github"></i></a></li>
+              <li><a href="javascript:;"><i class="fa fa-youtube"></i></a></li>
+              <li><a href="javascript:;"><i class="fa fa-dropbox"></i></a></li>
+            </ul>  
+          </div>
+          <!-- END PAYMENTS -->
+          <!-- BEGIN POWERED -->
+         
+          <!-- END POWERED -->
+        </div>
+      </div>
+    </div>
+    <!-- END FOOTER -->
+
+    <!-- Load javascripts at bottom, this will reduce page load time -->
+    <!-- BEGIN CORE PLUGINS (REQUIRED FOR ALL PAGES) -->
+    <!--[if lt IE 9]>
+    <script src="assets/plugins/respond.min.js"></script>
+    <![endif]--> 
+    <script>
+      function toggleBox(element) {
+          element.classList.toggle('active');
+      }
+  </script>
+    <script src="assets/plugins/jquery.min.js" type="text/javascript"></script>
+    <script src="assets/plugins/jquery-migrate.min.js" type="text/javascript"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>      
+    <script src="assets/corporate/scripts/back-to-top.js" type="text/javascript"></script>
+    <!-- END CORE PLUGINS -->
+
+    <!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
+    <script src="assets/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script><!-- pop up -->
+
+    <script src="assets/corporate/scripts/layout.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            Layout.init();    
+            Layout.initTwitter();
+        });
+    </script>
+    <script>
+      function searchContent() {
+          var input = document.getElementById("searchInput").value.toLowerCase(); // Ambil input
+          var body = document.body; // Ambil body halaman
+          var content = body.innerHTML; // Ambil seluruh isi halaman
+          var searchResults = document.getElementById("searchResults");
+      
+          if (input === "") {
+              alert("Masukkan kata kunci untuk mencari.");
+              return false;
+          }
+      
+          // Reset teks yang sebelumnya disorot
+          var cleanContent = content.replace(/<span class="highlight">(.*?)<\/span>/g, "$1");
+          
+          // Jika kata ditemukan
+          if (cleanContent.toLowerCase().includes(input)) {
+              var highlightedContent = cleanContent.replace(new RegExp(input, "gi"), match => {
+                  return `<span class="highlight">${match}</span>`;
+              });
+      
+              body.innerHTML = highlightedContent;
+              searchResults.innerHTML = `<p>Ditemukan hasil untuk: <strong>${input}</strong></p>`;
+          } else {
+              searchResults.innerHTML = `<p>Tidak ada hasil ditemukan untuk: <strong>${input}</strong></p>`;
+          }
+      
+          return false; // Mencegah reload halaman
+      }
+      
+      // Tambahkan CSS untuk highlight
+      var style = document.createElement("style");
+      style.innerHTML = ".highlight { background-color: yellow; font-weight: bold; }";
+      document.head.appendChild(style);
+      </script>
+      
+      
+    <!-- END PAGE LEVEL JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+</html>
