@@ -222,7 +222,7 @@
             <div class="col-md-6 col-sm-6 additional-shop-info">
                 <ul class="list-unstyled list-inline">
                     <li><i class="fa fa-phone"></i><span>+6282162118932</span></li>
-                    <li><i class="fa fa-envelope-o"></i><span>info@keenthemes.com</span></li>
+                  
                 </ul>
             </div>
             <!-- END TOP BAR LEFT PART -->
@@ -268,9 +268,9 @@
                     <li class="dropdown">
                         <a href="#">Kegiatan Gereja <i class="fa fa-angle-down"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="Koor.php">Koor</a></li>
-                            <li><a href="Event.php">Event</a></li>
                             <li><a href="Remaja Naposo.php">Remaja Naposo</a></li>
+                            <li><a href="Event.php">Event</a></li>
+                            <li><a href="Koor.php">Koor</a></li>
                         </ul>
                     </li>
                     <li><a href="Peta.php">Peta/Maps</a></li>

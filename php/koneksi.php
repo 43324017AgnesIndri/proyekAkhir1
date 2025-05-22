@@ -2,14 +2,12 @@
 $host = "localhost";
 $user = "root";
 $pass = "";
-$db   = "db_admin";
-$port = 3307; // Tambahkan port di sini
+$db   = "admin_db";
 
 // Membuat koneksi dengan error reporting
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 try {
-    // Tambahkan $port ke dalam parameter mysqli_connect
-    $conn = mysqli_connect($host, $user, $pass, $db, $port);
+    $conn = mysqli_connect($host, $user, $pass, $db);
     
     // Set charset untuk mencegah SQL injection
     mysqli_set_charset($conn, "utf8mb4");
@@ -18,6 +16,6 @@ try {
     error_log("Koneksi database gagal: " . $e->getMessage());
     
     // Tampilkan pesan error yang ramah pengguna
-    die("Maaf, terjadi kesalahan pada sistem. Silakan coba lagi nanti.");
+    die("Maaf, terjadi kesalahan pada sistem. Silakan coba lagi nanti.");
 }
 ?>
