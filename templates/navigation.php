@@ -8,7 +8,40 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
+        /* Pastikan tidak wrap di desktop */
+    }
+
+    .logo-toggle-wrapper {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .site-logo {
+        display: flex;
+        align-items: center;
+        margin-right: 10px;
+        /* Tambahan agar logo tidak terlalu besar */
+        min-width: 100px;
+        align-self: flex-start;
+        /* Jaga posisi vertikal sejajar */
+    }
+
+    .site-logo img.logo-img {
+        display: block;
+        max-height: 60px;
+        width: auto;
+        height: auto;
+        vertical-align: middle;
+        /* Pastikan logo rata tengah */
+    }
+
+    .header-navigation {
+        flex: 1;
+        display: flex;
+        align-items: center;
     }
 
     .header-navigation ul {
@@ -16,19 +49,26 @@
         list-style: none;
         margin: 0;
         padding: 0;
-        gap: 20px;
+        gap: 8px; /* Perkecil jarak antar menu */
+        align-items: center;
     }
 
     .header-navigation ul li {
         position: relative;
+        min-width: 120px;
+        /* Tambahan agar tiap menu punya ruang cukup */
+        text-align: center;
     }
 
     .header-navigation ul li a {
         text-decoration: none;
         color: #333;
-        padding: 10px 15px;
+        padding: 8px 10px; /* Perkecil padding */
         display: block;
         transition: color 0.3s;
+        white-space: nowrap;
+        /* Tambahan agar dua kata tidak turun baris */
+        text-align: center;
     }
 
     .header-navigation ul li a:hover {
@@ -84,7 +124,7 @@
 
     .search-btn {
         cursor: pointer;
-        font-size: 18px;
+        font-size: 15px;
         color: #333;
     }
 
@@ -92,31 +132,89 @@
         color: #007bff;
     }
 
+    .mobi-toggler {
+        display: none;
+        font-size: 28px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        color: #333;
+        margin-left: 10px;
+        /* Pastikan toggle ada di kanan logo */
+    }
+
     /* Responsiveness */
     @media (max-width: 768px) {
-        .header-navigation ul {
+        .header-navigation-container {
             flex-direction: column;
-            gap: 10px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            /* Boleh wrap di mobile */
         }
 
-        .header-navigation ul li {
+        .logo-toggle-wrapper {
             width: 100%;
         }
 
+        .header-navigation {
+            width: 100%;
+            display: none;
+            flex-direction: column;
+            margin-top: 10px;
+        }
+
+        .header-navigation.active {
+            display: flex;
+        }
+
+        .header-navigation ul {
+            flex-direction: column;
+            gap: 0;
+            width: 100%;
+        }
+
+        .header-navigation ul li {
+            min-width: 0;
+            /* Reset agar mobile tetap responsif */
+            width: 100%;
+            border-bottom: 1px solid #eee;
+        }
+
+        .header-navigation ul li:last-child {
+            border-bottom: none;
+        }
+
         .header-navigation ul li a {
-            text-align: center;
+            white-space: normal;
+            text-align: left;
+            padding-left: 25px;
         }
 
         .dropdown-menu {
             position: static;
             box-shadow: none;
+            display: none;
+            background: #fff;
+        }
+
+        .dropdown.open > .dropdown-menu {
+            display: block;
         }
 
         .menu-search {
             margin-top: 10px;
         }
+
+        .site-logo {
+            margin-bottom: 10px;
+        }
+
+        .mobi-toggler {
+            display: block;
+        }
     }
 </style>
+<!-- BEGIN TOP BAR -->
 <div class="pre-header">
     <div class="container">
         <div class="row">
@@ -139,23 +237,28 @@
         </div>
     </div>
 </div>
+<!-- END TOP BAR -->
+
+<!-- BEGIN HEADER & NAVIGATION -->
 <div class="header">
     <div class="container">
-        <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
         <div class="header-navigation-container">
-            <div class="site-logo">
-                <a href="index.php">
-                    <img src="assets/corporate/img/logos/LOGO HKBP.png" width="80" alt="Logo" class="logo-img">
-                </a>
+            <div class="logo-toggle-wrapper">
+                <div class="site-logo">
+                    <a href="index.php">
+                        <img src="assets/corporate/img/logos/LOGO HKBP.png" width="80" alt="Logo" class="logo-img">
+                    </a>
+                </div>
+                <button class="mobi-toggler" aria-label="Toggle Navigation"><i class="fa fa-bars"></i></button>
             </div>
-            <div class="header-navigation">
+            <nav class="header-navigation">
                 <ul>
                     <li><a href="index.php">Home</a></li>
                     <li class="dropdown">
-                        <a href="javascript:;">Tentang</a>
+                        <a href="#">Tentang <i class="fa fa-angle-down"></i></a>
                         <ul class="dropdown-menu">
                             <li><a href="Visi&misi.php">Visi & Misi</a></li>
-                            <li><a href="sejarah gereja.html">Sejarah Gereja</a></li>
+                            <li><a href="sejarah gereja.php">Sejarah Gereja</a></li>
                             <li><a href="program pelayanan.php">Program Pelayanan</a></li>
                             <li><a href="Galeri.php">Galeri</a></li>
                         </ul>
@@ -164,7 +267,7 @@
                     <li><a href="Warta Jemaat.php">Warta Jemaat</a></li>
                     <li><a href="Struktur Gereja.php">Struktur Gereja</a></li>
                     <li class="dropdown">
-                        <a href="javascript:;">Kegiatan Gereja</a>
+                        <a href="#">Kegiatan Gereja <i class="fa fa-angle-down"></i></a>
                         <ul class="dropdown-menu">
                             <li><a href="Koor.php">Koor</a></li>
                             <li><a href="Event.php">Event</a></li>
@@ -173,7 +276,7 @@
                     </li>
                     <li><a href="Peta.php">Peta/Maps</a></li>
                     <li class="menu-search">
-                        <i class="fa fa-search search-btn"></i>
+                        <a href="javascript:void(0);" class="search-btn"><i class="fa fa-search"></i></a>
                         <div class="search-box">
                             <form onsubmit="return searchContent();">
                                 <input type="text" id="searchInput" placeholder="Search..." required>
@@ -182,10 +285,12 @@
                         </div>
                     </li>
                 </ul>
-            </div>
+            </nav>
         </div>
     </div>
 </div>
+<!-- END HEADER & NAVIGATION -->
+
 <script>
     function searchContent() {
         const input = document.getElementById("searchInput").value.toLowerCase();
@@ -239,7 +344,29 @@
     `;
     document.head.appendChild(style);
 
-    document.querySelector('.search-btn').addEventListener('click', function () {
+    document.querySelector('.search-btn').addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector('.search-box').classList.toggle('active');
+    });
+
+    // Toggle menu for mobile
+    document.querySelector('.mobi-toggler').addEventListener('click', function () {
+        document.querySelector('.header-navigation').classList.toggle('active');
+    });
+
+    // Dropdown toggle for mobile
+    document.querySelectorAll('.header-navigation .dropdown > a').forEach(function (el) {
+        el.addEventListener('click', function (e) {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                var parent = this.parentElement;
+                parent.classList.toggle('open');
+            }
+        });
+    });
+
+    document.querySelector('.search-btn').addEventListener('click', function (e) {
+        e.preventDefault();
         document.querySelector('.search-box').classList.toggle('active');
     });
 </script>

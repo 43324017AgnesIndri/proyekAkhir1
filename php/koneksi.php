@@ -2,12 +2,14 @@
 $host = "localhost";
 $user = "root";
 $pass = "";
-$db   = "admin_db";
+$db   = "db_admin";
+$port = 3307; // Tambahkan port di sini
 
 // Membuat koneksi dengan error reporting
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 try {
-    $conn = mysqli_connect($host, $user, $pass, $db);
+    // Tambahkan $port ke dalam parameter mysqli_connect
+    $conn = mysqli_connect($host, $user, $pass, $db, $port);
     
     // Set charset untuk mencegah SQL injection
     mysqli_set_charset($conn, "utf8mb4");

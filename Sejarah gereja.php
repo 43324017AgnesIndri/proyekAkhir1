@@ -112,6 +112,104 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
     .search-btn {
         cursor: pointer;
     }
+
+/* Align menu and search bar with logo */
+.header-navigation-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.site-logo {
+    flex-shrink: 0;
+}
+
+.header-navigation {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.header-navigation ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 20px;
+}
+
+.header-navigation li {
+    position: relative;
+}
+
+.header-navigation li a {
+    display: block;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.header-navigation li a:hover {
+    color: #0066cc;
+}
+
+/* Dropdown styling */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    min-width: 200px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+    z-index: 1000;
+}
+
+.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Search box styling */
+.menu-search {
+    position: relative;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.search-box {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: white;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.search-box.active {
+    display: block;
+}
+
+.search-btn {
+    cursor: pointer;
+    font-size: 18px;
+    color: #333;
+    transition: color 0.3s;
+    padding: 10px 15px;
+}
+
+.search-btn:hover {
+    color: #0066cc;
+}
 </style>
 <script>
   document.querySelector('.search-btn').addEventListener('click', function() {
@@ -123,6 +221,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
 
 <!-- Body BEGIN -->
 <body class="corporate">
+    <?php include "templates/navigation.php"; ?>
     <!-- BEGIN STYLE CUSTOMIZER -->
     <div class="color-panel hidden-sm">
       <div class="color-mode-icons icon-color"></div>
@@ -141,110 +240,9 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
     </div>
     <!-- END BEGIN STYLE CUSTOMIZER --> 
 
-     <!-- BEGIN PRE-FOOTER -->
-    
-    <!-- BEGIN TOP BAR -->
-    <div class="pre-header">
-        <div class="container">
-            <div class="row">
-                <!-- BEGIN TOP BAR LEFT PART -->
-                <div class="col-md-6 col-sm-6 additional-shop-info">
-                  <ul class="list-unstyled list-inline">
-                      <li><i class="fa fa-phone"></i><span>+6282162118932</span></li>
-                      <li><i class="fa fa-envelope-o"></i><span>info@keenthemes.com</span></li>
-                  </ul>
-              </div>
-              <!-- END TOP BAR LEFT PART -->
-              <!-- BEGIN TOP BAR MENU --> 
-              <div class="col-md-6 col-sm-6 additional-nav">
-                  <ul class="list-unstyled list-inline pull-right">
-                      <li><a href="page-login.html">Log In</a></li>
-                      <li><a href="page-reg-page.html">Registration</a></li>
-                  </ul>
-              </div>
-              <!-- END TOP BAR MENU -->
-          </div>
-      </div>        
-  </div>
-  <!-- END TOP BAR -->
-  <!-- BEGIN HEADER -->
-  <div class="header">
-    <div class="container">
-      <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
-      <!-- BEGIN NAVIGATION -->
-<div class="header-navigation-container">
-<div class="header-navigation">
-  <ul class="nav-menu">
-    <!-- Logo ditempatkan sebelum menu "Home" -->
-    <li class="site-logo">
-      <a href="index.html">
-        <img src="assets/corporate/img/logos/LOGO HKBP.png" width="80" alt="Logo" class="logo-img">
-      </a>
-    </li>
-     
-      <!-- BEGIN NAVIGATION -->
-      <div class="header-navigation pull-right font-transform-inherit">
-        <ul>
-          <li class="dropdown">
-            <a href="index.php">Home</a>
-          </li>
-              
-            
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;"> Beranda </a>
-            <ul class="dropdown-menu">
-              <li><a href="Visi&misi.html">Visi & Misi</a></li>
-              <li><a href="sejarah gereja.html">Sejarah gereja</a></li>
-              <li><a href="program pelayanan.html">Program Pelayanan</a></li>
-              <li><a href="Galeri.html">Galeri</a></li>
-            </ul>
-          </li>
-          <li class="dropdown"><a href="jemaat.html">Jemaat</a></li>
-          <li class="dropdown"><a href="Warta Jemaat.html">Warta Jemaat</a></li>
-          <li class="dropdown"><a href="Struktur Gereja.html">Struktur Gereja</a></li>
-    
-          <li class="dropdown dropdown-megamenu">
-            <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;"> Kegiatan Gereja </a>
-            <ul class="dropdown-menu">
-              <li><a href="Koor.html">Koor</a></li>
-              <li><a href="Event.html">Event</a></li>
-              <li><a href="Remaja Naposo.html">Remaja Naposo</a></li>
-            </ul>
-          </li>
-          <li class="dropdown"><a href="Peta.html">Peta/Maps</a></li>
-          
-      <!-- BEGIN TOP SEARCH -->
-      <li class="menu-search">
-        <span class="sep"></span>
-        <i class="fa fa-search search-btn"></i>
-        <div class="search-box">
-            <form action="search-results.html" method="GET">
-                <div class="input-group">
-                    <input type="text" name="q" placeholder="Search..." class="form-control" required>
-                    <span class="input-group-btn">
-                        <button class="btn btn-primary" type="submit">Search</button>
-                    </span>
-                </div>
-            </form>
-        </div>
-    </li>
-
-            <!-- END TOP SEARCH -->
-          </ul>
-        </div>
-        <!-- END NAVIGATION -->
-      </div>
-    </div>
-    <!-- Header END -->
-     
-
     <div class="main">
       <div class="container">
-        <ul class="breadcrumb">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="javascript:;">Pages</a></li>
-            <li class="active">Search Results</li>
-        </ul>
+        
         <!-- BEGIN SIDEBAR & CONTENT -->
         <div class="row margin-bottom-40">
           <!-- BEGIN CONTENT -->
